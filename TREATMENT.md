@@ -95,27 +95,27 @@ N = narrator. Y = you. R = Rosa. D = dispatcher. Times approximate (locked in `s
 **Cold open (0–30)**
 - 0–10 · rain, a city asleep, one lit window. N: *"Eleven fifty-nine. The city is asleep. Your phone isn't."*
 - 10–19 · clock 23:59 → 00:00, phone buzzes. N: *"At midnight it updates, like it always does."* · *"Except tonight the news is dated tomorrow."*
-- 19–24 · phone UI: `WED 12 MAR` (wall calendar: TUE 11). Headlines: RAIN RETURNS AT 7:42 A.M. · TRAM 9 DELAYED 40 MIN · LOST DOG FOUND ON PIER STREET.
+- 19–24 · phone UI: `WED 12 MAR` (wall calendar: TUE 11). Headlines: RAIN RETURNS AT 7:42 A.M. · TRAM 9 DELAYED 40 MIN · LOST DOG FOUND ON MILL STREET.
 - 24–30 · TITLE: *What If Your Phone Showed Tomorrow's News?*
 
 **I · The First Headline (30–102)**
 - N: *"Most of it is ordinary. Weather. Trams. A lost dog."* · *"You laugh, and go to sleep."*
 - 7:41 at the tram stop, dry. N: *"Seven forty-one. The sky is dry."* — clock flips 7:42, rain sweeps in. N: *"Seven forty-two."*
 - Pull-back. N: *"Real forecasters can't do this. Even with supercomputers, their forecasts gain only about one day of accuracy every ten years."* · *"Yours is perfect. Down to the minute."*
-- Ride. N: *"Every headline comes true. The late tram. The lost dog on Pier Street. The final score."* · *"For a whole morning, you know everything a day early."*
+- Ride. N: *"Every headline comes true. The late tram. The lost dog on Mill Street. The final score."* · *"For a whole morning, you know everything a day early."*
 
 **II · Small Change (102–192)**
 - Phone UI at noon: FIRE GUTS ROSA'S CORNER CAFÉ, 2:10 P.M. N: *"Then, at noon, a new headline."*
-- Café. Y: *"Rosa. Your heater. Unplug it. Please."* · R: *"That old thing? It's kept me warm for twenty years."* · Y: *"Not past ten past two."* · R: *"…Fine. For you."* — the heater's red glow goes out.
+- Café. Y: *"Rosa. Your heater. Unplug it. Please."* · R: *"That old thing? It's kept me warm for twenty years."* · Y: *"Not past ten past two."* · R: *"All right. For you."* — the heater's red glow goes out.
 - 2:10, near-silence. N: *"Ten past two. Nothing burns."*
 - Rewrite: ~~FIRE GUTS…~~ → CAFÉ OWNER THANKS MYSTERY COURIER. N: *"And on your screen, the headline rewrites itself."*
-- Lorenz pull-back. N: *"In 1961, the meteorologist Edward Lorenz re-ran a weather simulation, but typed in one number rounded: point five oh six instead of point five oh six one two seven."* · *"Within weeks of simulated weather, the forecast described a different sky."* · *"Tomorrow is not written in stone. It bends to the smallest touch. Even yours."*
+- Lorenz pull-back. N: *"In 1961, the meteorologist Edward Lorenz re-ran a weather simulation, but typed in one number rounded: point five oh six instead of point five oh six one two seven."* · *"Within two simulated months, the forecast described a completely different sky."* · *"Tomorrow is not written in stone. It bends to the smallest touch. Even yours."*
 
 **III · The Run (192–300)**
 - Room, night: NORTHGATE SAVINGS BANK COLLAPSES — THOUSANDS LOSE SAVINGS. N: *"That night, the worst headline yet."* · *"Thousands of families. Everything they have saved."* · *"So you warn them."* (you type, post; send chime)
 - **The spread**, top-down. N: *"Ten shares. Then a thousand."* · *"By three in the morning, half the city has read your warning."* (windows light faster and faster; score accelerates)
 - Dawn queue. N: *"At dawn they come to take their money out. All of them. At once."*
-- High wide. N: *"In 1948, the sociologist Robert Merton gave this a name: the self-fulfilling prophecy. A belief that makes itself come true."* · *"A bank never holds all its savers' money in cash. If everyone asks on the same day, it cannot pay."* · *"In March 2023, customers of one American bank tried to withdraw forty-two billion dollars in a single day. By the next morning, it was shut."*
+- High wide. N: *"In 1948, the sociologist Robert Merton gave this a name: the self-fulfilling prophecy. A belief that makes itself come true."* · *"A bank never holds all its savers' money in cash. If everyone asks on the same day, it cannot pay."* · *"In March 2023, customers of one American bank tried to withdraw forty-two billion dollars in a single day. By the next morning, its doors were closed."*
 - Shutter slams. Silence. Phone: BANK COLLAPSES AFTER VIRAL WARNING. N: *"The bank was never going to fail."* · *"Until you told everyone it would."*
 
 **IV · Cassandra (300–378)**
