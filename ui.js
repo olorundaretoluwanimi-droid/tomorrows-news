@@ -132,7 +132,7 @@ function chip(t, c) {
 
 // —— Dialogue box ——
 function wrap(text, maxW) { const words = text.split(' '), lines = []; let cur = ''; for (const w of words) { const n = cur ? cur + ' ' + w : w; if (g.measureText(n).width > maxW && cur) { lines.push(cur); cur = w; } else cur = n; } if (cur) lines.push(cur); return lines; }
-const dlgSpan = v => [v.t - .45, v.t + dur(v) + 1.6];
+const dlgSpan = v => [v.t - .45, Math.max(v.t + dur(v) + 1.6, v.t + (v.who.length + 1 + v.sub.length) / 15 + 1.6)];   // long enough to read (readcheck)
 function dialog(t, v) {
   const [a, b] = dlgSpan(v), al = ss(seg(t, a, a + .35)) * (1 - ss(seg(t, b - .35, b)));
   if (al <= 0) return null;

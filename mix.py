@@ -148,7 +148,7 @@ for e in EV:
 # bikes and steps
 place(fx, freewheel(24, .22) * np.sin(np.pi * t_(24) / 24) ** .3, 66, 0); place(fx, tyres(24, .18), 66, 0)
 place(fx, freewheel(21, .25), 354, 0); place(fx, tyres(21, .3), 354, 0)
-steps(90.2, 93.6, .25, .3, -.1); steps(117.0, 118.6, .28, .2, .2); steps(120.6, 122.4, .28, .2, .2)
+steps(90.2, 93.6, .25, .3, -.1); steps(117.6, 119.3, .28, .2, .2); steps(120.6, 122.4, .28, .2, .2)
 steps(383.0, 383.6, .25, .3, 0); steps(436, 440.4, .26, .3, -.2)
 # tram bell at the stop and on the ride; spread pings multiply
 for t0 in [70.4, 80.2, 95.0, 152.0]: place(fx, bell(.3), t0, -.4)

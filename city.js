@@ -374,7 +374,7 @@ export function buildCity() {
     }
     if (id === 'call') {
       const p = [RX + .6, RY, RZ - .2]; place(hero, ...p);
-      const f = t < T.hangup ? (t > 308.4 && t < 312.4 ? 'ear' : blinkOr(t, Math.floor(t * 1.2) % 2 ? 'ear1' : 'ear', 'earDim')) : t < T.hangup + 1.2 ? 'earDim' : 'lookDim';
+      const f = t < T.hangup ? (t > 309.1 && t < 313.1 ? 'ear' : blinkOr(t, Math.floor(t * 1.2) % 2 ? 'ear1' : 'ear', 'earDim')) : t < T.hangup + 1.2 ? 'earDim' : 'lookDim';
       hero.frame(f); hero.face(cam, false); showPhone(hero, false, bk * .9);
       fill.position.set(RX + 1, RY + 2, RZ + 2); fill.intensity = .8; fill.color.set('#9ab0e0');
       focusOn = hero.root.position.clone().add(new THREE.Vector3(0, .9, 0));
@@ -414,21 +414,21 @@ export function buildCity() {
       // you
       place(hero, HX, 0, HZ);
       let hf;
-      if (id === 'cafe') hf = (t > 103 && t < 105.6) || (t > 112.2 && t < 114.2) ? 'plead' : blinkOr(t, idle(t), 'blink', .4);
+      if (id === 'cafe') hf = (t > 103 && t < 105.6) || (t > 113.3 && t < 115.3) ? 'plead' : blinkOr(t, idle(t), 'blink', .4);
       else if (id === 'heater') hf = blinkOr(t, 'idle0', 'blink', .4);
       else hf = look2(t);
       hero.frame(hf); hero.face(cam, false); if (hf.startsWith('look')) showPhone(hero, false, bk);
       // Rosa: behind the counter, then to the heater to unplug it
       let rx = CAFE.x + 1.3, rz = -9.3, rf;
-      if (t < 117.0) { rf = t > 107.4 && t < 110.4 ? (t < 109 ? 'talk' : 'shrug') : t > 116 && t < 117 ? 'talk' : blinkOr(t, Math.floor(t * 1.4) % 2 ? 'cross1' : 'cross', 'blink'); }
-      else if (t < T.unplug) { const k = seg(t, 117.0, T.unplug); rx = lerp(CAFE.x + 1.3, CAFE.x + 2.7, k); rz = lerp(-9.3, -6.6, k); rf = walk4(t); }
+      if (t < 117.6) { rf = t > 107.6 && t < 110.6 ? (t < 109.2 ? 'talk' : 'shrug') : t > 117.1 && t < 117.6 ? 'talk' : blinkOr(t, Math.floor(t * 1.4) % 2 ? 'cross1' : 'cross', 'blink'); }
+      else if (t < T.unplug) { const k = seg(t, 117.6, T.unplug); rx = lerp(CAFE.x + 1.3, CAFE.x + 2.7, k); rz = lerp(-9.3, -6.6, k); rf = walk4(t); }
       else if (t < T.heaterOff + .6) { rx = CAFE.x + 2.7; rz = -6.6; rf = 'reach'; }
       else if (t < T.heaterOff + 2.4) { const k = seg(t, T.heaterOff + .6, T.heaterOff + 2.4); rx = lerp(CAFE.x + 2.7, CAFE.x + 1.6, k); rz = lerp(-6.6, -9.2, k); rf = walk4(t); }
       else { rx = CAFE.x + 1.6; rz = -9.2; rf = blinkOr(t, Math.floor(t * 1.4) % 2 ? 'cross1' : 'cross', 'blink'); }
-      place(rosa, rx, 0, rz); rosa.frame(rf); rosa.face(cam, t < 117 || t > T.heaterOff + .6);
+      place(rosa, rx, 0, rz); rosa.frame(rf); rosa.face(cam, t < 117.6 || t > T.heaterOff + .6);
       fill.position.set(CAFE.x, 2.2, -4.6); fill.intensity = 1.4; fill.color.set('#ffd8b0');
       focusOn = id === 'heater' ? new THREE.Vector3(CAFE.x + 3.6, .9, -6.4) : id === 'rewrite' ? hero.root.position.clone().add(new THREE.Vector3(0, .9, 0)) : new THREE.Vector3((HX + rx) / 2, 1, (HZ + rz) / 2);
-      if (id === 'rewrite' && t > 132.3 && t < 140.8) focusOn = cam.position.clone().add(new THREE.Vector3(0, -1, -1.4));
+      if (id === 'rewrite' && t > 132.3 && t < 141.6) focusOn = cam.position.clone().add(new THREE.Vector3(0, -1, -1.4));
     }
     if (id === 'lorenz') {
       place(hero, CAFE.x - 3.4, 0, -4.0); hero.frame(blinkOr(t, 'lookUp', 'blink')); hero.face(cam, false);

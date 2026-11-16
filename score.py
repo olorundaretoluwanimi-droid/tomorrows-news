@@ -99,7 +99,7 @@ ev(120.0, 'cellos_pizz', 'E2', .8, .5, -.2)                   # heater off
 # near-silence: 2:10 (bars 42–44, 123–132): two soft notes only
 ev(123.0, 'violas', 'B3', 8.6, .16, -.2, attack=1.0); ev(123.0, 'violas', 'E4', 8.6, .13, .2, attack=1.0)
 # the rewrite: the motif turns (minor sixth)
-motif(132.4, vel=.4, notes=('B5', 'E6', 'G6')); motif(135.0, vel=.45, notes=('B5', 'E6', 'F#6', 'B6'))
+motif(136.4, vel=.4, notes=('B5', 'E6', 'G6')); motif(137.1, vel=.45, notes=('B5', 'E6', 'F#6', 'B6'))
 pad(bt(45), 3, ['Am', 'B', 'Em'], vel=.24, upper='violas')
 # Lorenz: the strings open out; the motif inverted in the violins
 pad(bt(48), 10, ['Em', 'C', 'G', 'D', 'Am', 'C', 'G', 'B', 'Em', 'Em'], vel=.3, upper='violins', bass=True)
@@ -143,7 +143,7 @@ for i in range(22):
     ev(s, 'cellos', c[0], BAR * 1.03, .22, -.25, attack=.4)
     ev(s, 'cellos_pizz', 'E2', .6, .3, -.2); ev(s + 2 * B, 'violins_pizz', 'E5', .3, .18, .25)
 motif(292.6, vel=.35)
-ev(323.6, 'contrabass_pizz', 'E1', .8, .7, 0); ev(323.6, 'timpani', 'B2', 1.5, .5, 0)       # the line goes dead
+ev(325.1, 'contrabass_pizz', 'E1', .8, .7, 0); ev(325.1, 'timpani', 'B2', 1.5, .5, 0)       # the line goes dead
 melody(bt(111), 'horn', [(0, 'B3', 2), (2, 'E4', 2), (4, 'F#4', 4), (8, 'G4', 2), (10, 'F#4', 2), (12, 'E4', 4)], vel=.4, oct=0, pan=-.1)
 melody(bt(115), 'horn', [(0, 'B3', 2), (2, 'E4', 2), (4, 'F#4', 6), (10, 'B3', 2)], vel=.42, pan=-.1)
 # —— 7. Chapter V (bars 119–142, 354–426): the race, the road, the last minute ——

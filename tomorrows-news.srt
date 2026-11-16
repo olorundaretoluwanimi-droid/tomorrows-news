@@ -51,15 +51,15 @@ Then, at noon, a new headline.
 YOU: Rosa. Your heater. Unplug it. Please.
 
 14
-00:01:47,050 --> 00:01:50,876
+00:01:47,250 --> 00:01:51,076
 ROSA: That old thing? It’s kept me warm for twenty years.
 
 15
-00:01:51,850 --> 00:01:54,632
+00:01:52,950 --> 00:01:55,732
 YOU: Not past ten past two.
 
 16
-00:01:55,650 --> 00:01:58,032
+00:01:56,750 --> 00:01:59,132
 ROSA: All right. For you.
 
 17
@@ -147,15 +147,15 @@ Two days later, the one headline you cannot ignore.
 DISPATCH: Emergency services. What’s your emergency?
 
 38
-00:05:08,050 --> 00:05:13,056
+00:05:08,750 --> 00:05:13,756
 YOU: The Old River Bridge. It’s going to collapse at 7:04. Close it!
 
 39
-00:05:14,050 --> 00:05:17,828
+00:05:14,850 --> 00:05:18,628
 DISPATCH: Wait. You’re the courier. The one from the bank post.
 
 40
-00:05:18,850 --> 00:05:23,963
+00:05:20,350 --> 00:05:25,463
 DISPATCH: Do you know how many people lost their jobs this week? Get off this line.
 
 41
