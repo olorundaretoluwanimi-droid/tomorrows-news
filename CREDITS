@@ -1,0 +1,31 @@
+TOMORROW'S NEWS — third-party assets and licences
+
+Voices
+  Kokoro-82M text-to-speech (hexgrad), run offline through kokoro-onnx — Apache License 2.0.
+  Voices used: bm_fable (narrator), am_liam (you), bf_emma (Rosa), af_sarah (dispatcher), am_michael (driver).
+  The voices are synthetic. Speech check: faster-whisper base.en (MIT).
+
+Music (original score written for this film, rendered from these sample libraries)
+  VS Chamber Orchestra: Community Edition, Versilian Studios / Sam Gossner — CC0 1.0
+    (violins, violas, cellos, contrabass — arco, tremolo, pizzicato, spiccato; French horn, timpani, glockenspiel, gong)
+    https://github.com/sgossner/VSCO-2-CE
+  Versilian Community Sample Library (VCSL) — CC0 1.0
+    (concert harp, baroque alto recorder)
+    https://github.com/sgossner/VCSL
+
+Sound effects and ambience
+  Synthesised procedurally (numpy/scipy) for this film. No recordings.
+
+Fonts (self-hosted)
+  Cinzel — The Cinzel Project Authors (Natanael Gama) — SIL Open Font License 1.1 (fonts/OFL-Cinzel.txt)
+  Cormorant Garamond — The Cormorant Project Authors (Christian Thalmann) — SIL Open Font License 1.1 (fonts/OFL-CormorantGaramond.txt)
+
+Software
+  three.js r170 — MIT License.
+
+Pictures
+  Every image in the film (the city, the characters, the textures, rain, river, sky) is drawn in code for this film.
+  No photographs, footage, maps or generated images.
+
+Historical and scientific facts
+  Sources for the facts stated in the narration: FACTS.md.
