@@ -1,6 +1,6 @@
 // 2D overlay: chapter cards, title, the phone's news window, status chips, dialogue boxes, narration subtitles, fades.
 // Also reports on-screen text for readcheck (window.TEXTS).
-import { VO, CHAPTERS, T, DUR, PHONE, CHIPS } from './story.js';
+import { VO, CHAPTERS, T, DUR, PHONE, CHIPS, COLD, COLD_PHONE } from './story.js';
 
 const cv = document.getElementById('ov'), g = cv.getContext('2d');
 const W = 1920, H = 1080;
@@ -77,11 +77,13 @@ function battIcon(x, y, pct, a) {
   g.font = '600 26px "Cormorant Garamond"'; g.textAlign = 'right'; g.textBaseline = 'middle'; g.fillStyle = low ? '#ff8a6a' : '#dfe8f0'; g.fillText(pct + '%', x - 10, y + 12);
   g.restore();
 }
+const PH_S = 1.5;   // headline panel scale: drawn in its 1060-px layout, shown 1.5× (1590 px wide, 57-px headlines)
 function phoneWindow(t, P) {
   const al = ss(seg(t, P.a, P.a + .35)) * (1 - ss(seg(t, P.b - .35, P.b)));
   if (al <= 0) return null;
-  const bw = 1060, bh = 120 + P.items.length * 82, x = (W - bw) / 2, y = 250 + (1 - al) * 16;
-  g.save(); g.globalAlpha = al;
+  const bw = 1060, bh = 120 + P.items.length * 82, x = 0, y = 0;
+  const X0 = (W - bw * PH_S) / 2, Y0 = 196 + (1 - al) * 16;
+  g.save(); g.translate(X0, Y0); g.scale(PH_S, PH_S); g.globalAlpha = al;
   const bgr = g.createLinearGradient(0, y, 0, y + bh); bgr.addColorStop(0, 'rgba(10,16,24,.9)'); bgr.addColorStop(1, 'rgba(6,8,14,.93)');
   g.fillStyle = bgr; g.fillRect(x, y, bw, bh);
   g.strokeStyle = SILVER_D + '.9)'; g.lineWidth = 2; g.strokeRect(x + .5, y + .5, bw - 1, bh - 1);
@@ -117,7 +119,8 @@ function phoneWindow(t, P) {
     }
   });
   g.restore();
-  return texts;
+  // text boxes back to screen pixels (readcheck)
+  return texts.map(b => ({ ...b, x0: X0 + b.x0 * PH_S, y0: Y0 + b.y0 * PH_S, x1: X0 + b.x1 * PH_S, y1: Y0 + b.y1 * PH_S }));
 }
 function chip(t, c) {
   const al = ss(seg(t, c.a, c.a + .3)) * (1 - ss(seg(t, c.b - .3, c.b)));
@@ -177,11 +180,17 @@ const FADES = [[30, .4, .5], [36, .35, .45], [90, .35, .45], [171, .4, .5], [288
 function blackout(t) {
   let a = 1 - ss(seg(t, 0, 1.2));
   for (const [c, o, i] of FADES) { if (t < c && t > c - o) a = Math.max(a, ss((t - (c - o)) / o)); if (t >= c && t < c + i) a = Math.max(a, 1 - ss((t - c) / i)); }
-  if (t >= T.dead && t < 432) a = Math.max(a, ss(seg(t, T.dead + .05, T.dead + .25)) * .0);
-  if (t >= 432 && t < 435) a = 1;
-  if (t >= 435) a = Math.max(a, 1 - ss(seg(t, 435, 436.2)));
   a = Math.max(a, ss(seg(t, DUR - 1.0, DUR - .05)));
   if (a > 0) { g.fillStyle = `rgba(0,0,0,${a})`; g.fillRect(0, 0, W, H); }
+}
+
+// —— Cold open (film time 0..COLD): the bridge headline types in over the storm, then a dip to black ——
+export function drawCold(t) {
+  g.clearRect(0, 0, W, H);
+  const texts = phoneWindow(t, COLD_PHONE) || [];
+  const a = Math.max(1 - ss(seg(t, 0, .9)), ss(seg(t, COLD - .6, COLD - .02)));
+  if (a > 0) { g.fillStyle = `rgba(0,0,0,${a})`; g.fillRect(0, 0, W, H); }
+  return texts;
 }
 
 export function drawOverlay(t) {

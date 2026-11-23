@@ -251,6 +251,10 @@ export function buildCity() {
     bridgehead: { p: track([[0, [49.5, 6.8, -41.5]], [39, [47.8, 6.0, -44.2]]]), l: track([[0, [40.8, 1.0, -52.4]], [39, [40.6, 1.0, -52.8]]]), fov: 32 },
     seven03: { p: track([[0, [45.4, 3.6, -45.2]], [9, [43.4, 2.5, -48.4]]]), l: track([[0, [40.2, 1.7, -52.4]], [9, [40.2, 1.8, -52.6]]]), fov: 30 },
     fall: { p: track([[0, [86, 21, -63]], [9, [82, 19.5, -65]]]), l: track([[0, [BR.x, -.5, -68]], [9, [BR.x, -1.5, -69]]]), fov: 34 },
+    // the collapse up close, from the east bank: the middle span drops (426.15–428.6), hits the river, sinks
+    fallClose: { p: track([[0, [69, 8.5, -65]], [8.7, [64.5, 6.4, -67]]]), l: track([[0, [BR.x, -1, -70]], [8.7, [BR.x, -2.6, -70]]]), fov: 40 },
+    // cold open: the bridge still standing in the storm, a slow push in
+    cold: { p: track([[0, [104, 30, -54]], [7, [92, 24.5, -58]]]), l: track([[0, [BR.x - 22, 8, -73]], [7, [BR.x - 22, 7, -73]]]), fov: 34 },
     aftermath: { p: track([[0, [55, 11.5, -35]], [18, [52.5, 10, -39]]]), l: track([[0, [41, .5, -55]], [18, [41.5, .5, -55.5]]]), fov: 32 },
     dawnAfter: { p: track([[0, [136, 44, -58]], [27, [96, 27, -60]]]), l: track([[0, [BR.x + 2, -1, -64]], [27, [BR.x + 3, 0, -58]]]), fov: 34 },
   };
@@ -266,7 +270,7 @@ export function buildCity() {
   }
   const KEY_OF = {
     city0: 'night', room0: 'night', ui0: 'night', title: 'night', stop741: 'grey', rain742: 'grey', pullback: 'rain', ride: 'morning', noonUI: 'noon', cafe: 'noon', heater: 'noon', rewrite: 'noon', lorenz: 'noon',
-    room1: 'night', spread: 'night', queue: 'dawnCold', bankwide: 'dawnCold', shutter: 'dawnCold', guilt: 'dawnCold', room2: 'dusk', call: 'storm', cassandra: 'storm', rideStorm: 'storm', bridgehead: 'storm', seven03: 'storm', fall: 'storm', aftermath: 'storm', dawnAfter: 'dawnGold',
+    room1: 'night', spread: 'night', queue: 'dawnCold', bankwide: 'dawnCold', shutter: 'dawnCold', guilt: 'dawnCold', room2: 'dusk', call: 'storm', cassandra: 'storm', rideStorm: 'storm', bridgehead: 'storm', seven03: 'storm', fall: 'storm', fallClose: 'storm', cold: 'storm', aftermath: 'storm', dawnAfter: 'dawnGold',
   };
 
   function update(t, shot, cam, post, renderer) {
@@ -286,8 +290,8 @@ export function buildCity() {
     else if (id === 'guilt') K = mixKey('dawnCold', 'morning', ss(seg(t, 270, 288)) * .5);
     else if (id === 'room2') K = mixKey('dusk', 'storm', ss(seg(t, 288, 303)) * .6);
     else K = mixKey(KEY_OF[id] || 'night', KEY_OF[id] || 'night', 0);
-    if (['spread', 'cassandra', 'title', 'city0', 'dawnAfter', 'fall'].includes(id)) K.fogD *= id === 'spread' ? .22 : .55;
-    const stormy = ['call', 'cassandra', 'rideStorm', 'bridgehead', 'seven03', 'fall', 'aftermath'].includes(id);
+    if (['spread', 'cassandra', 'title', 'city0', 'dawnAfter', 'fall', 'fallClose', 'cold'].includes(id)) K.fogD *= id === 'spread' ? .22 : .55;
+    const stormy = ['call', 'cassandra', 'rideStorm', 'bridgehead', 'seven03', 'fall', 'fallClose', 'cold', 'aftermath'].includes(id);
     const fl = stormy || id === 'room2' ? flash(t) * (id === 'aftermath' ? .5 : 1) : 0;
     const CK = CAM[id];
     // camera first (sun shadow follows the look target)
@@ -314,7 +318,7 @@ export function buildCity() {
 
     // ——— rain ———
     const rainK = id === 'rain742' ? ss(seg(t, T.flip742, T.flip742 + 1.2)) : id === 'pullback' ? 1 : id === 'ride' ? 1 - ss(seg(t, 66, 72)) : id === 'city0' || id === 'room0' || id === 'ui0' || id === 'title' ? .7 : stormy ? (id === 'aftermath' ? .5 : 1) : id === 'room2' ? .8 : 0;
-    if (rainK > 0) { RN.visible = true; const c = look || new THREE.Vector3(); RN.position.set(c.x, Math.max(0, c.y - 4), c.z); const big = ['city0', 'title', 'cassandra', 'fall'].includes(id); RN.scale.setScalar(big ? 3.2 : 1); RN.material.opacity = .42 * rainK * (big ? .8 : 1); RN.userData.update(t, [-7, 0]); }
+    if (rainK > 0) { RN.visible = true; const c = look || new THREE.Vector3(); RN.position.set(c.x, Math.max(0, c.y - 4), c.z); const big = ['city0', 'title', 'cassandra', 'fall', 'cold'].includes(id); RN.scale.setScalar(big ? 3.2 : 1); RN.material.opacity = .42 * rainK * (big ? .8 : 1); RN.userData.update(t, [-7, 0]); }
     M.asphalt.roughness = (id === 'pullback' || id === 'rain742' && t > T.flip742 + 1 || stormy || id === 'ride') ? .38 : .92;
 
     // ——— the bridge (falls at T.fall) ———
@@ -460,6 +464,7 @@ export function buildCity() {
       if (id === 'queue' || id === 'bankwide') { P0.position.set(BANK.x, 3.2, -3.0); P0.intensity = 4; }
     }
     if (id === 'cassandra') { focusOn = new THREE.Vector3(BR.x - 6, 0, -60); tiltC = .45; }
+    if (id === 'cold') { focusOn = new THREE.Vector3(BR.x, 0, -67); tiltC = .5; }
     if (id === 'rideStorm') {
       place(hero, hx, 0, hz); hero.frame(ride4(t, 10)); hero.face(cam, true);
       hero.mesh.scale.x = -1;   // riding away from the camera-right: facing north
@@ -469,7 +474,7 @@ export function buildCity() {
       focusOn = hero.root.position.clone().add(new THREE.Vector3(0, .9, 0));
     }
     const HP = [BR.x + .2, 0, -52.6];
-    if (id === 'bridgehead' || id === 'seven03' || id === 'fall' || id === 'aftermath' || id === 'dawnAfter') {
+    if (id === 'bridgehead' || id === 'seven03' || id === 'fall' || id === 'fallClose' || id === 'aftermath' || id === 'dawnAfter') {
       // cars approach and stop in front of you
       T.cars.forEach(([a, b], i) => { const c = cars[i], k = ss(seg(t, a, b)); if (t < a && id === 'bridgehead') return; c.visible = true; c.position.set(CAR[i].x, 0, lerp(CAR[i].z + 46, CAR[i].z, k)); });
       const lit = id !== 'dawnAfter';
@@ -490,10 +495,10 @@ export function buildCity() {
         else f = t > 399.3 && t < 402.4 ? (Math.floor(t * 3) % 2 ? 'up' : 'up2') : (Math.floor(t * 1.2) % 2 ? 'up2' : 'up');
         if (bat < .1 && f.startsWith('up')) f = f === 'up' ? 'upDim' : 'upDim2';
       } else if (id === 'seven03') f = Math.floor(t * 1.1) % 2 ? 'upDim2' : 'upDim';
-      else if (id === 'fall') f = t < T.dead ? (Math.floor(t * 1.1) % 2 ? 'upDim2' : 'upDim') : 'upDead';
+      else if (id === 'fall' || id === 'fallClose') f = t < T.dead ? (Math.floor(t * 1.1) % 2 ? 'upDim2' : 'upDim') : 'upDead';
       else if (id === 'aftermath') { px = BR.x + 4.9; pz = -52.3; f = t > 440.6 && t < 445 ? 'sitDead' : 'slump'; }
       else { px = BR.x + 4.9; pz = -52.3; f = t > 458.6 ? 'sitDawn' : 'sitDead'; }
-      place(hero, px, f.startsWith('sit') || f === 'slump' ? .14 : 0, pz); hero.frame(f); hero.face(cam, id === 'bridgehead' && t < T.arrive + 1.2 ? true : false, id === 'fall' || id === 'dawnAfter' ? .35 : 0);
+      place(hero, px, f.startsWith('sit') || f === 'slump' ? .14 : 0, pz); hero.frame(f); hero.face(cam, id === 'bridgehead' && t < T.arrive + 1.2 ? true : false, id === 'fall' || id === 'fallClose' || id === 'dawnAfter' ? .35 : 0);
       if (id === 'bridgehead' && t < T.arrive + 1.2) hero.mesh.scale.x = -1;
       const bkOn = t > T.arrive + 1.2 || id !== 'bridgehead';
       if (bkOn) { place(bike, BR.x + 5.9, 0, -51.2); bike.frame('idle0'); bike.face(cam, false); }
@@ -507,8 +512,10 @@ export function buildCity() {
       }
       fill.position.set(px + 1.5, 2.2, pz + 3); fill.intensity = id === 'dawnAfter' ? 0 : 1.6; fill.color.set('#c0d0ff');
       P0.position.set(BR.x - 4.6, 5.2, -60); P0.intensity = id === 'dawnAfter' ? 0 : 7; P1.position.set(BR.x + 5.2, 4.4, -48); P1.intensity = id === 'dawnAfter' ? 0 : 6;
-      focusOn = id === 'fall' ? new THREE.Vector3(BR.x, 0, -64) : hero.root.position.clone().add(new THREE.Vector3(0, .9, 0));
+      if (id === 'fallClose') { P1.position.set(BR.x + 10, 7, -67); P1.intensity = 10; }   // an embankment lamp lights the falling span
+      focusOn = id === 'fall' ? new THREE.Vector3(BR.x, 0, -64) : id === 'fallClose' ? new THREE.Vector3(BR.x, -1.5, -70) : hero.root.position.clone().add(new THREE.Vector3(0, .9, 0));
       if (id === 'fall') tiltC = .5;
+      if (id === 'fallClose') tiltC = .52;
     }
     // lightning makes everything flash
     if (fl > 0) { hemi.intensity += 0; }
@@ -516,7 +523,7 @@ export function buildCity() {
     cam.updateProjectionMatrix();
     const fo = focusOn || look || new THREE.Vector3();
     post.dof.focus = cam.position.distanceTo(fo);
-    const far = ['city0', 'title', 'spread', 'cassandra', 'fall', 'dawnAfter', 'lorenz', 'pullback', 'bankwide'].includes(id);
+    const far = ['city0', 'title', 'spread', 'cassandra', 'fall', 'cold', 'dawnAfter', 'lorenz', 'pullback', 'bankwide'].includes(id);
     post.dof.aper = far ? 420 : 260; post.dof.maxCoc = far ? 20 : 16;
     if (id === 'ui0' || id === 'rewrite' || id === 'guilt') post.dof.aper = 300;
     if (id === 'heater' || id === 'seven03') { post.dof.aper = 110; post.dof.maxCoc = 10; }

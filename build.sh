@@ -22,6 +22,8 @@ node core/render/events.mjs "$HERE"
 "$PY" "$HERE/score.py"
 "$PY" "$HERE/mix.py"
 ffmpeg -v error -y -i "$HERE/out/mix.wav" -c:a flac -sample_fmt s16 -compression_level 8 "$HERE/audio/mix.flac"   # the soundtrack the GitHub render uses
+# stored in the repo as 7 MB pieces + checksum (pushes over ~30 MB fail on a slow connection); render.yml joins them
+(cd "$HERE/audio" && rm -f mix.flac.part* && split -b 7m -d -a 2 mix.flac mix.flac.part && sha256sum mix.flac > mix.flac.sha256)
 "$PY" "$HERE/srt_cues.py"
 "$PY" core/render/srt.py "$HERE/out/cues.json" "$HERE/$NAME.srt"
 [ -n "$STOP_BEFORE_VIDEO" ] && { echo "stopped before the picture"; exit 0; }
@@ -30,5 +32,5 @@ node core/render/video.mjs "$HERE" --fps $FPS --workers 2 --out "$HERE/out/video
 # 5. master: -14 LUFS, no grain (pixel art)
 sh core/render/mux.sh "$HERE/out/video.mp4" "$HERE/out/mix.wav" "$HERE/$NAME.mp4" $FPS 0
 # 6. poster
-ffmpeg -v error -y -ss 418.0 -i "$HERE/$NAME.mp4" -frames:v 1 -q:v 2 "$HERE/poster.jpg"
+ffmpeg -v error -y -ss 425.0 -i "$HERE/$NAME.mp4" -frames:v 1 -q:v 2 "$HERE/poster.jpg"
 echo "done: $HERE/$NAME.mp4"

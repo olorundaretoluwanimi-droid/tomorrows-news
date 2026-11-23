@@ -10,7 +10,8 @@ sys.path.insert(0, os.path.join(LIB, 'core', 'audio'))
 from sfx import *
 
 E = json.load(open(os.path.join(HERE, 'events.json')))
-DUR = E['dur']; EV = E['ev']; N = int(DUR * SR); tt = np.arange(N) / SR
+COLD = 7.0   # cold open before the story (story.js COLD); events.json times are story time, its dur is the whole film
+DUR = E['dur'] - COLD; EV = E['ev']; N = int(DUR * SR); tt = np.arange(N) / SR
 rng = np.random.default_rng(13)
 def curve(keys): k = np.array(keys, float); return np.interp(tt, k[:, 0], k[:, 1])
 def stereo(x, pan=0.0): l, r = np.cos((pan + 1) * np.pi / 4), np.sin((pan + 1) * np.pi / 4); return np.stack([x * l * 1.414, x * r * 1.414], 1)
@@ -36,7 +37,7 @@ wind = bp(np.roll(NZ, 7777), 120, 700) * (.4 + .6 * np.sin(2 * np.pi * .11 * tt)
 g_rainNight = gate((0, 30), fi=1.2, fo=.6) * .55
 g_rainDay = gate((45, 70), fi=.6, fo=3)
 g_stormRoom = gate((288, 330), fi=.6, fo=.5) * np.clip((tt - 288) / 15, .35, 1)
-g_storm = gate((330, 432), fi=.5, fo=.1) + gate((432, 453), fi=.1, fo=2) * .55
+g_storm = gate((330, 435), fi=.5, fo=.1) + gate((435, 453), fi=.1, fo=2) * .55   # full storm through the collapse shot
 # city traffic (distant hum + passing cars), morning birds, noon murmur
 traffic = lp(BR, 220) * .8 + bp(np.roll(NZ, 1234), 200, 1200) * .25 * (.5 + .5 * np.sin(2 * np.pi * .05 * tt) ** 2)
 birds = np.zeros(N)
@@ -65,7 +66,7 @@ g_hum = gate((102, 120.0), fi=.4, fo=.03) * g_cafe
 hiwind = bp(np.roll(NZ, 31337), 200, 1500) * (.5 + .5 * np.sin(2 * np.pi * .09 * tt) ** 2)
 g_hiw = gate((189, 216), fi=.8, fo=.6)
 river = bp(np.roll(NZ, 2718), 180, 1400) * (.7 + .3 * np.sin(2 * np.pi * .3 * tt))
-g_river = gate((375, 432), fi=1, fo=.1) * 1.0 + gate((435, 480), fi=2) * .6
+g_river = gate((375, 435), fi=1, fo=.1) * 1.0 + gate((435, 480), fi=2) * .6
 gulls = np.zeros(N)
 for k in range(24):
     t0 = rng.uniform(454, 478); d = rng.uniform(.35, .7); n = int(d * SR); x = np.arange(n) / SR; f = 1500 * (1 - .35 * x / d) + 200 * np.sin(2 * np.pi * 9 * x)
@@ -190,10 +191,24 @@ for k, t0 in sorted(VT.items(), key=lambda kv: kv[1]):
 keys.sort(); gk = np.array(keys); bedG = np.interp(tt, gk[:, 0], gk[:, 1])
 musS *= bedG[:, None]; ambS *= (.3 + .7 * bedG)[:, None]; fxS *= (.45 + .55 * bedG)[:, None]
 mix = voS + musS + ambS + fxS
+
+# —— Cold open: the storm, the bridge headline arriving on the phone, the bridge-head clock; a dip at the end ——
+NC = int(COLD * SR); tc = np.arange(NC) / SR
+def cut(x, a): s = int(a * SR); return x[s:s + NC].copy()
+sel = np.abs(fx).sum(1) > 1e-4; k_fx = 10 ** (-27 / 20) / (np.sqrt(np.mean(fx[sel] ** 2)) + 1e-9)   # same gain as the story's foley
+fxc = np.zeros((NC, 2)); fx_main = fx; fx = fxc
+place(fxc, notify(.3), 1.0, .1)
+for t0, n in [(1.4, 31), (2.6, 24)]:
+    for i in range(n): place(fxc, keytap(.08), t0 + i / 34 + rng.uniform(-.004, .004), .15)
+place(fxc, thunder(.9, 4.0), 1.7, -.3)
+fx = fx_main
+env = np.clip(tc / .6, 0, 1) * np.clip((COLD - .05 - tc) / .8, 0, 1)
+cold = (cut(musS, 376.5) * .9 + cut(ambS, 360.0) + fxc * k_fx) * env[:, None] * 1.4   # +3 dB: level with the story's opening
+mix = np.concatenate([cold, mix])
 pk = np.abs(mix).max(); mix = np.tanh(mix / max(pk, 1e-6) * 1.2) * .9
 os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)
 sf.write(os.path.join(HERE, 'out', 'mix.wav'), mix.astype(np.float32), SR, subtype='FLOAT')
-print('wrote out/mix.wav', DUR, 's | vo', round(rms_db(voS), 1), 'mus', round(rms_db(musS), 1), 'amb', round(rms_db(ambS), 1), 'fx', round(rms_db(fxS), 1))
+print('wrote out/mix.wav', COLD + DUR, 's | vo', round(rms_db(voS), 1), 'mus', round(rms_db(musS), 1), 'amb', round(rms_db(ambS), 1), 'fx', round(rms_db(fxS), 1))
 low = []
 for k, t0 in sorted(VT.items(), key=lambda kv: kv[1]):
     a, b = int(t0 * SR), int((t0 + Dd[k]) * SR); gap = rms_db(voS[a:b]) - rms_db((musS + ambS + fxS)[a:b])

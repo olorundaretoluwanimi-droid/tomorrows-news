@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       start: { description: 'Start second', default: '0' }
-      end: { description: 'End second (480 = whole film)', default: '480' }
+      end: { description: 'End second (487 = whole film: 7 s cold open + 480 s story)', default: '487' }
       parts: { description: 'Parallel render jobs (max 20 on free plans)', default: '20' }
       fps: { description: 'Frames per second', default: '30' }
 
@@ -94,6 +94,9 @@ jobs:
           echo "joined $(ls parts/*.mp4 | wc -l) parts: $got frames (expected $want)" | tee -a "$GITHUB_STEP_SUMMARY"
           [ "$got" = "$want" ] || { echo "::error::frame count mismatch, a part is missing"; exit 1; }
           A=${{ inputs.start }}; B=${{ inputs.end }}
+          # the soundtrack is stored in 7 MB pieces (large pushes fail on the uploader's connection): join and verify
+          cat film/audio/mix.flac.part* > film/audio/mix.flac
+          (cd film/audio && sha256sum -c mix.flac.sha256)
           ffmpeg -v error -y -ss "$A" -to "$B" -i film/audio/mix.flac -c:a pcm_f32le mix.wav
           git clone --depth 1 https://github.com/lemomo-ai/lemo-opuscar lib
           LEMO_COLOR=bt709 sh lib/core/render/mux.sh video.mp4 mix.wav tomorrows-news.mp4 ${{ inputs.fps }} 0

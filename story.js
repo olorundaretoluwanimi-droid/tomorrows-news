@@ -2,7 +2,12 @@
 // 80 bpm, 4/4: one bar = 3 s; the downbeat of bar n is at (n-1)*3.
 export const BPM = 80, BAR = 240 / BPM;
 export const bar = n => (n - 1) * BAR;
-export const DUR = 480;
+export const DUR = 480;   // the story; the finished film is COLD + DUR long
+// Cold open: COLD seconds before the story's 0 — the bridge headline over the intact bridge in the storm.
+// Every time below is story time; the film's clock is story time + COLD (main.js adds it).
+export const COLD = 7;
+export const COLD_SCENE = 357.2;   // scene clock used for the cold open's picture: storm, bridge still standing, a flash at 1.2 s
+export const COLD_PHONE = { a: 1.0, b: 6.3, date: 'SUN 16 MAR', tag: 'TOMORROW', time: '18:31', bat: 11, items: [[1.4, 'OLD RIVER BRIDGE FALLS IN STORM'], [2.6, '7:04 P.M. — 12 CARS LOST']] };
 export const SHOTS = [
   { id: 'city0', a: 0, b: 12 },
   { id: 'room0', a: 12, b: 21 },
@@ -29,8 +34,8 @@ export const SHOTS = [
   { id: 'rideStorm', a: 354, b: 375 },
   { id: 'bridgehead', a: 375, b: 414 },
   { id: 'seven03', a: 414, b: 423 },
-  { id: 'fall', a: 423, b: 432 },
-  { id: 'dark', a: 432, b: 435 },
+  { id: 'fall', a: 423, b: 426.3 },
+  { id: 'fallClose', a: 426.3, b: 435 },   // the collapse up close: the span drops, hits the river, sinks (was 3 s of black)
   { id: 'aftermath', a: 435, b: 453 },
   { id: 'dawnAfter', a: 453, b: 480 },
 ];

@@ -1,9 +1,9 @@
 // Tomorrow's News — page contract: window.DUR, window.render(t), window.READY, window.TEXTS, window.EV
 import * as THREE from 'three';
 import { makePost } from './post_ts.js';
-import { DUR, SHOTS, shotAt, VO, T, PHONE, CHIPS } from './story.js';
+import { DUR, SHOTS, shotAt, VO, T, PHONE, CHIPS, COLD, COLD_SCENE } from './story.js';
 import { buildCity } from './city.js';
-import { drawOverlay, overlayReady } from './ui.js';
+import { drawOverlay, drawCold, overlayReady } from './ui.js';
 
 const W = 1920, H = 1080, Q = new URLSearchParams(location.search);
 const SS = +(Q.get('ss') ?? 1);
@@ -22,10 +22,16 @@ await overlayReady();
 
 const TILT = !Q.has('notilt');
 const _v = new THREE.Vector3();
-window.DUR = DUR;
-window.render = t => {
-  const shot = shotAt(t);
-  if (shot.id !== 'dark') {
+window.DUR = COLD + DUR;   // film length: cold open + story
+window.COLD = COLD;
+const COLD_SHOT = { id: 'cold', a: COLD_SCENE, b: COLD_SCENE + COLD };
+// film time ft: 0..COLD is the cold open, then story time t = ft - COLD
+window.render = ft => {
+  if (ft < COLD) { picture(COLD_SCENE + ft, COLD_SHOT); drawCold(ft); }
+  else { const t = ft - COLD; picture(t, shotAt(t)); drawOverlay(t); }
+};
+function picture(t, shot) {
+  {
     post.dof.scene = city.scene;
     V.fade.value = 1; V.warm.value = .1; V.sat.value = 1.05; V.amt.value = .6; V.contrast.value = .2;
     post.bloom.radius = .7;
@@ -37,10 +43,10 @@ window.render = t => {
       post.dof.maxCoc = Math.max(post.dof.maxCoc, 22); V.sat.value *= 1.12; V.contrast.value = .26;
     }
     post.composer.render();
-  } else { renderer.setRenderTarget(null); renderer.setClearColor('#000'); renderer.clear(); }
-  drawOverlay(t);
-};
-window.TEXTS = t => drawOverlay(t);   // 2D only: cheap
+  }
+}
+window.TEXTS = ft => ft < COLD ? drawCold(ft) : drawOverlay(ft - COLD);   // 2D only: cheap
+// window.EV stays in story time (mix.py and srt_cues.py add COLD)
 // Sound events for the mixer (exported by events.mjs)
 const typed = [];
 for (const P of PHONE) for (const [t0, text, , re, alt] of P.items) { typed.push({ t: t0, type: 'type', n: text.length }); if (re != null) typed.push({ t: re, type: 'type', n: alt.length }); }

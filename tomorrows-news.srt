@@ -1,203 +1,203 @@
 1
-00:00:01,150 --> 00:00:05,877
+00:00:08,150 --> 00:00:12,877
 Eleven fifty-nine. The city is asleep. Your phone isn’t.
 
 2
-00:00:12,250 --> 00:00:16,150
+00:00:19,250 --> 00:00:23,150
 At midnight, it updates, like it always does.
 
 3
-00:00:16,150 --> 00:00:20,089
+00:00:23,150 --> 00:00:27,089
 Except tonight, the news is dated tomorrow.
 
 4
-00:00:21,450 --> 00:00:26,513
+00:00:28,450 --> 00:00:33,513
 Most of it is ordinary. The weather. The trams. A lost dog.
 
 5
-00:00:26,650 --> 00:00:29,976
+00:00:33,650 --> 00:00:36,976
 You laugh, and go to sleep.
 
 6
-00:00:41,450 --> 00:00:44,955
+00:00:48,450 --> 00:00:51,955
 Seven forty-one. The sky is dry.
 
 7
-00:00:45,050 --> 00:00:47,556
+00:00:52,050 --> 00:00:54,556
 Seven forty-two.
 
 8
-00:00:51,650 --> 00:01:00,650
+00:00:58,650 --> 00:01:07,650
 Real forecasters can’t do this. Even with supercomputers, their forecasts gain only about one day of accuracy every ten years.
 
 9
-00:01:00,650 --> 00:01:04,822
+00:01:07,650 --> 00:01:11,822
 Yours is perfect. Down to the minute.
 
 10
-00:01:07,150 --> 00:01:13,795
+00:01:14,150 --> 00:01:20,795
 Every headline comes true. The late tram. The lost dog on Mill Street. The final score.
 
 11
-00:01:17,650 --> 00:01:21,623
+00:01:24,650 --> 00:01:28,623
 For one whole morning, you know everything a day early.
 
 12
-00:01:34,250 --> 00:01:37,491
+00:01:41,250 --> 00:01:44,491
 Then, at noon, a new headline.
 
 13
-00:01:42,650 --> 00:01:46,055
+00:01:49,650 --> 00:01:53,055
 YOU: Rosa. Your heater. Unplug it. Please.
 
 14
-00:01:47,250 --> 00:01:51,076
+00:01:54,250 --> 00:01:58,076
 ROSA: That old thing? It’s kept me warm for twenty years.
 
 15
-00:01:52,950 --> 00:01:55,732
+00:01:59,950 --> 00:02:02,732
 YOU: Not past ten past two.
 
 16
-00:01:56,750 --> 00:01:59,132
+00:02:03,750 --> 00:02:06,132
 ROSA: All right. For you.
 
 17
-00:02:07,250 --> 00:02:10,623
+00:02:14,250 --> 00:02:17,623
 Ten past two. Nothing burns.
 
 18
-00:02:12,250 --> 00:02:16,294
+00:02:19,250 --> 00:02:23,294
 And on your screen, the headline rewrites itself.
 
 19
-00:02:21,650 --> 00:02:30,494
+00:02:28,650 --> 00:02:37,494
 In 1961, the meteorologist Edward Lorenz re-ran a weather simulation, but typed in one number rounded off.
 
 20
-00:02:30,650 --> 00:02:36,428
+00:02:37,650 --> 00:02:43,428
 0.506, instead of 0.506127.
 
 21
-00:02:37,150 --> 00:02:42,956
+00:02:44,150 --> 00:02:49,956
 Within two simulated months, the forecast described a completely different sky.
 
 22
-00:02:43,650 --> 00:02:49,833
+00:02:50,650 --> 00:02:56,833
 Tomorrow is not written in stone. It bends to the smallest touch. Even yours.
 
 23
-00:02:51,650 --> 00:02:54,850
+00:02:58,650 --> 00:03:01,850
 That night, the worst headline yet.
 
 24
-00:02:54,850 --> 00:03:01,275
+00:03:01,850 --> 00:03:08,275
 Northgate Savings Bank collapses. Thousands of families lose everything they have saved.
 
 25
-00:03:02,650 --> 00:03:05,492
+00:03:09,650 --> 00:03:12,492
 So you warn them.
 
 26
-00:03:11,150 --> 00:03:15,751
+00:03:18,150 --> 00:03:22,751
 Ten shares. Then a hundred. Then a thousand.
 
 27
-00:03:20,650 --> 00:03:24,843
+00:03:27,650 --> 00:03:31,843
 By three in the morning, half the city has read your warning.
 
 28
-00:03:37,650 --> 00:03:42,760
+00:03:44,650 --> 00:03:49,760
 At dawn, they come to take their money out. All of them. At once.
 
 29
-00:03:57,650 --> 00:04:05,050
+00:04:04,650 --> 00:04:12,050
 In 1948, the sociologist Robert Merton gave this a name: the self-fulfilling prophecy.
 
 30
-00:04:05,050 --> 00:04:08,768
+00:04:12,050 --> 00:04:15,768
 A false belief that makes itself come true.
 
 31
-00:04:09,150 --> 00:04:16,150
+00:04:16,150 --> 00:04:23,150
 A bank never keeps all its savers’ money in cash. If everyone asks on the same day, it cannot pay.
 
 32
-00:04:16,150 --> 00:04:24,050
+00:04:23,150 --> 00:04:31,050
 In March 2023, customers of one American bank tried to withdraw $42 billion in a single day.
 
 33
-00:04:24,050 --> 00:04:27,584
+00:04:31,050 --> 00:04:34,584
 By the next morning, its doors were closed.
 
 34
-00:04:39,150 --> 00:04:42,157
+00:04:46,150 --> 00:04:49,157
 The bank was never going to fail.
 
 35
-00:04:42,650 --> 00:04:45,676
+00:04:49,650 --> 00:04:52,676
 Until you told everyone it would.
 
 36
-00:04:48,650 --> 00:04:52,680
+00:04:55,650 --> 00:04:59,680
 Two days later, the one headline you cannot ignore.
 
 37
-00:05:03,650 --> 00:05:07,302
+00:05:10,650 --> 00:05:14,302
 DISPATCH: Emergency services. What’s your emergency?
 
 38
-00:05:08,750 --> 00:05:13,756
+00:05:15,750 --> 00:05:20,756
 YOU: The Old River Bridge. It’s going to collapse at 7:04. Close it!
 
 39
-00:05:14,850 --> 00:05:18,628
+00:05:21,850 --> 00:05:25,628
 DISPATCH: Wait. You’re the courier. The one from the bank post.
 
 40
-00:05:20,350 --> 00:05:25,463
+00:05:27,350 --> 00:05:32,463
 DISPATCH: Do you know how many people lost their jobs this week? Get off this line.
 
 41
-00:05:30,650 --> 00:05:38,499
+00:05:37,650 --> 00:05:45,499
 The Greeks told of Cassandra, a princess who could see the future, cursed so that no one would ever believe her.
 
 42
-00:05:39,650 --> 00:05:42,588
+00:05:46,650 --> 00:05:49,588
 Tonight, that’s you.
 
 43
-00:05:44,650 --> 00:05:49,172
+00:05:51,650 --> 00:05:56,172
 Twenty-four minutes. Nine percent battery.
 
 44
-00:06:25,650 --> 00:06:29,364
+00:06:32,650 --> 00:06:36,364
 Nobody believes a warning from a stranger.
 
 45
-00:06:30,150 --> 00:06:34,535
+00:06:37,150 --> 00:06:41,535
 But almost everyone stops for a person standing in the road.
 
 46
-00:06:39,150 --> 00:06:41,979
+00:06:46,150 --> 00:06:48,979
 YOU: Stay back! Please! Stay back!
 
 47
-00:06:54,650 --> 00:06:57,297
+00:07:01,650 --> 00:07:04,297
 Seven oh three.
 
 48
-00:07:20,650 --> 00:07:25,279
+00:07:27,650 --> 00:07:32,279
 DRIVER: You were standing right in the road. You stopped all of us.
 
 49
-00:07:34,650 --> 00:07:39,504
+00:07:41,650 --> 00:07:46,504
 In the morning, your phone shows today’s news. Only today’s.
 
 50
-00:07:46,650 --> 00:07:49,937
+00:07:53,650 --> 00:07:56,937
 Nobody gets to read tomorrow.
 
 51
-00:07:50,150 --> 00:07:53,099
+00:07:57,150 --> 00:08:00,099
 But everybody writes it.

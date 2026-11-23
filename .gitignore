@@ -4,3 +4,4 @@ voices/*.wav
 voices/.cache/
 *.mp4
 __pycache__/
+audio/mix.flac
